@@ -107,7 +107,7 @@ public class MainApplicationTest {
     }
 
     @Test
-    public void petSortTest(){
+    public void petSort1Test(){
         ArrayList<Pet> a = new ArrayList<>();
 
         Pet snowDog = new Dog("Snow");
@@ -129,4 +129,38 @@ public class MainApplicationTest {
 
         Assert.assertTrue( a.indexOf(snowDog) > a.indexOf(snowCat) );
     }
+
+
+    @Test
+    public void petComparatorTest(){
+        ArrayList<Pet> a = new ArrayList<>();
+
+        Pet dragon1 = new Dragon("Malroth");
+        Pet dragon2 = new Dragon("Grima");
+        Pet parrot1 = new Parrot("Polly");
+        Pet parrot2 = new Parrot("Captain");
+
+
+        a.add(dragon1);
+        a.add(parrot1);
+        a.add(new Dog("Ammy"));
+        a.add(new Dog("Coco"));
+        a.add(new Ferret("Nick"));
+        a.add(dragon2);
+        a.add(parrot2);
+
+        PetComparator pc = new PetComparator();
+        a.sort(pc);
+
+        for (Pet p:a) {
+            //p.speak();
+            System.out.println(p.getClass().getSimpleName()+"'s name is "+ p.getName());
+        }
+        Assert.assertTrue( a.indexOf(dragon1) > a.indexOf(dragon2) );
+        Assert.assertTrue( a.indexOf(parrot1) > a.indexOf(parrot2) );
+    }
+
 }
+
+
+
